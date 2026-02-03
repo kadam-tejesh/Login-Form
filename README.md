@@ -85,3 +85,61 @@ On success → redirected to welcome.jsp
 Access video.jsp for embedded YouTube video
 
 Click logout → session invalidated → back to login page
+🧰 Dependencies
+<dependencies>
+  <dependency>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
+    <version>6.0.0</version>
+    <scope>provided</scope>
+  </dependency>
+
+  <dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.3.0</version>
+  </dependency>
+</dependencies>
+
+🧱 Maven Build Plugins
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.11.0</version>
+      <configuration>
+        <release>23</release>
+      </configuration>
+    </plugin>
+
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-war-plugin</artifactId>
+      <version>3.4.0</version>
+      <configuration>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+
+🔒 Session & Cache Handling
+
+Each protected JSP includes:
+
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setHeader("Expires", "0");
+if (session.getAttribute("name") == null) {
+    response.sendRedirect("index.jsp");
+}
+
+
+This ensures users cannot return to protected pages after logging out.
+
+👨‍💻 Author
+
+Tejeshwar Sai Kadam
+📧 Email: kadamtejesh07@gmail.com
+]
+🌐 GitHub: https://github.com/kadam-tejesh
